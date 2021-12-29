@@ -1,0 +1,24 @@
+name: mishka_cms_android_flutter
+description: The Android application for MishkaCms.
+publish_to: 'none'
+version: 0.0.1
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+
+dependencies:
+  cupertino_icons: ^1.0.2
+  bloc: ^8.0.1
+  flutter_bloc: ^8.0.0
+  equatable: ^2.0.0
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_lints: ^1.0.0
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  assets: 
+      - assets/images/
+  uses-material-design: true
