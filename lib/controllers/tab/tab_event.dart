@@ -1,5 +1,6 @@
 // import 'package:equatable/equatable.dart';
-import 'package:mishka_cms_android_flutter/app/tap/tab.dart';
+
+import 'package:mishka_cms_android_flutter/components/tap/tab.dart';
 
 abstract class TabEvent
 // extends Equatable

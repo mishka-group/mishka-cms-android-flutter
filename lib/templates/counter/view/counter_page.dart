@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mishka_cms_android_flutter/controller/counter/counter_cubit.dart';
+import 'package:mishka_cms_android_flutter/controllers/counter/counter_cubit.dart';
 
 import 'counter_view.dart';
 

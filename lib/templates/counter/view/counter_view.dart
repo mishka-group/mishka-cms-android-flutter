@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mishka_cms_android_flutter/controller/counter/counter_cubit.dart';
+
+import '../counter.dart';
 
 /// {@template counter_view}
 /// A [StatelessWidget] which reacts to the provided

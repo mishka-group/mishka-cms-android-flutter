@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mishka_cms_android_flutter/app/tap/tab.dart';
-import 'package:mishka_cms_android_flutter/controller/tab/tab.dart';
+import 'package:mishka_cms_android_flutter/components/tap/tab.dart';
+import 'package:mishka_cms_android_flutter/controllers/tab/tab.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
