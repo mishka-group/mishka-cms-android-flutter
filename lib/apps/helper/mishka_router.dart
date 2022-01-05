@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mishka_cms_android_flutter/apps/enums/route_name.dart';
 
 class MishkaRouter {
   MishkaRouter(this.context);
@@ -8,12 +9,13 @@ class MishkaRouter {
     Navigator.of(context).pushNamed('/');
   }
 
-  getTo(String route, {dynamic args}) {
-    Navigator.of(context).pushNamed('/' + route, arguments: args);
+  getTo(RouteName route, {dynamic args}) {
+    Navigator.of(context).pushNamed('/' + route.name, arguments: args);
   }
 
-  getUntilTo(String route, {dynamic args}) {
-    Navigator.of(context).pushNamedAndRemoveUntil('/' + route, (route) => false,
+  getUntilTo(RouteName route, {dynamic args}) {
+    Navigator.of(context).pushNamedAndRemoveUntil(
+        '/' + route.name, (route) => false,
         arguments: args);
   }
 
