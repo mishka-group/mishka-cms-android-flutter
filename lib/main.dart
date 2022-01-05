@@ -5,9 +5,13 @@
 // license that can be found in the LICENSE file or at
 // https://opensource.org/licenses/Apache-2.0.
 
-import 'package:mishka_cms_android_flutter/bootstrap.dart';
+import 'package:mishka_cms_android_flutter/routes.dart';
+
+import 'bootstrap.dart';
 import 'templates/app/view/app.dart';
 
 void main() {
-  bootstrap(() => const App());
+  bootstrap(() => App(
+        routes: Routes(),
+      ));
 }

@@ -9,26 +9,27 @@ import 'package:mishka_cms_android_flutter/templates/sing_up/view/sign_up.dart';
 
 class Routes {
   Route? onGenerateRoute(RouteSettings routeSettings) {
+    // var data = routeSettings.arguments as String;
     switch (routeSettings.name) {
       case '/':
         return MaterialPageRoute(builder: (_) {
           return const Intro();
         });
-      case '/sign_in':
+      case '/signIn':
         return MaterialPageRoute(builder: (_) {
           return const SignIn();
         });
-      case '/sign_up':
+      case '/signUp':
         return MaterialPageRoute(builder: (_) {
           return const SignUp();
         });
-      case '/mishka_blog':
+      case '/mishkaBlog':
         return MaterialPageRoute(builder: (_) {
           return const MishkaBlog(articles: [
             MishkaBlogArticle('title', 'author', 'timeToRead', 'img')
           ]);
         });
-      case '/mishka_article':
+      case '/mishkaArticle':
         return MaterialPageRoute(
           builder: (_) => BlocProvider.value(
             value: MishkaBlogBloc(),
