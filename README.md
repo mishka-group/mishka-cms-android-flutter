@@ -1,2 +1,2 @@
-# mishka-cms-android-flutter
-The Android application for MishkaCms which is created by flutter
+# MishkaCmsAndroidFlutter
+The Android application for [MishkaCms](https://github.com/mishka-group/mishka-cms) which is created by flutter
