@@ -1,10 +1,22 @@
-import 'package:flutter/material.dart';
-import 'package:mishka_cms_android_flutter/templates/counter/counter.dart';
+//
+//  app.dart
+//  mishka-cms-android-flutter
+//
+//  Created by Husen on 2022 09 Jan.
+//
 
-/// {@template counter_app}
-/// A [MaterialApp] which sets the `home` to [CounterPage].
-/// {@endtemplate}
-class App extends MaterialApp {
-  /// {@macro counter_app}
-  const App({Key? key}) : super(key: key, home: const CounterPage());
+import 'package:flutter/material.dart';
+import 'package:mishka_cms_android_flutter/routes.dart';
+
+class App extends StatelessWidget {
+  const App({Key? key, required this.routes}) : super(key: key);
+  final Routes routes;
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      onGenerateRoute: routes.getNavigation,
+    );
+  }
 }

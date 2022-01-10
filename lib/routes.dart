@@ -1,45 +1,31 @@
+//
+//  router.dart
+//  mishka-cms-android-flutter
+//
+//  Created by Husen on 2022 09 Jan.
+//
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mishka_cms_android_flutter/templates/intro/view/intro.dart';
-import 'package:mishka_cms_android_flutter/templates/post/view/post.dart';
-import 'package:mishka_cms_android_flutter/templates/sign_in/view/sign_in.dart';
-import 'package:mishka_cms_android_flutter/templates/sing_up/view/sign_up.dart';
+import 'package:mishka_cms_android_flutter/templates/intro/intro.dart';
 
-import 'controllers/home/home_bloc.dart';
-import 'templates/home/view/home.dart';
-
-class RouterSchema {
-  SelectNavigation nav;
-  dynamic arguments;
-  RouterSchema({required this.nav, this.arguments});
-}
+import 'apps/helper/router_schema.dart';
 
 class Routes {
-  Route? onGenerateRoute(RouteSettings routeSettings) {
-    // var data = routeSettings.arguments as String;
-    MaterialPageRoute(builder: (_) {
-      switch (routeSettings.name) {
-        case '/':
-          return const Intro();
+  Route? getNavigation(RouteSettings routeSettings) {
+    // dynamic data = routeSettings.arguments;
+    if (routeSettings.name == '/') {
+      return MaterialPageRoute(builder: (_) => const Intro());
+    }
+    RouterSchema routerSchema = routers.firstWhere(
+        (RouterSchema routerSchema) =>
+            routerSchema.routeName.name == routeSettings.name);
 
-        case '/signIn':
-          return const SignIn();
-        case '/signUp':
-          return const SignUp();
-        case '/home':
-          return BlocProvider.value(
-            value: HomeBloc(),
-            child: const Home(),
-          );
-        case '/post':
-          return BlocProvider.value(
-            value: HomeBloc(),
-            child: const Post(),
-          );
-        default:
-          return const Home();
-      }
-    });
+    return routerSchema.controller == null
+        ? routerSchema.nav.materialPageRoute()
+        : routerSchema.nav
+            // .blocProvider(routerSchema.controller!)
+            .materialPageRoute();
   }
 }
 
@@ -51,15 +37,13 @@ class AppRouter {
     Navigator.of(context).pushNamed('/');
   }
 
-  getTo(RouterSchema router) {
-    Navigator.of(context)
-        .pushNamed('/' + router.nav.name, arguments: router.arguments);
+  getTo(SelectNavigation nav, {arguments}) {
+    Navigator.of(context).pushNamed(nav.name, arguments: arguments);
   }
 
-  getUntilTo(RouterSchema router) {
-    Navigator.of(context).pushNamedAndRemoveUntil(
-        '/' + router.nav.name, (route) => false,
-        arguments: router.arguments);
+  getUntilTo(SelectNavigation nav, {arguments}) {
+    Navigator.of(context).pushNamedAndRemoveUntil(nav.name, (route) => false,
+        arguments: arguments);
   }
 
   pop() {
@@ -67,8 +51,13 @@ class AppRouter {
   }
 }
 
-/// {@template route_name}
-/// make sure the names you put in enum are the same as
-/// the names of the routes you put in [Routes]
-/// {@endtemplate}
-enum SelectNavigation { signIn, signUp, home, post }
+extension View on Widget {
+  MaterialPageRoute materialPageRoute() =>
+      MaterialPageRoute(builder: (_) => this);
+
+  blocProvider(StateStreamableSource<Object?> bloc) => MaterialPageRoute(
+      builder: (_) => BlocProvider.value(
+            value: bloc,
+            child: this,
+          ));
+}
