@@ -1,8 +1,8 @@
 //
 //  app.dart
-//  mishka-cms-android-flutter
-//
-//  Created by Husen on 2022 09 Jan.
+//  Created on 2022 09 Jan.
+//  Copyright © Mishka Group Flutter application,
+//  Developed by 2021 Hossein HassanNejad.
 //
 
 import 'package:flutter/material.dart';
