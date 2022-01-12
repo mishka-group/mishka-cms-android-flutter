@@ -1,5 +1,10 @@
 name: mishka_cms_android_flutter
 description: The Android application for MishkaCms.
+
+maintainers: ["Hossein HassanNejad", "Shahryar Tavakkoli"]
+licenses: ["Apache License 2.0"]
+links: {"GitHub": "https://github.com/mishka-group/mishka-cms-android-flutter"}
+
 publish_to: 'none'
 version: 0.0.1
 environment:
@@ -7,9 +12,10 @@ environment:
 
 dependencies:
   cupertino_icons: ^1.0.2
-  bloc: ^8.0.1
-  flutter_bloc: ^8.0.0
-  equatable: ^2.0.0
+  bloc: ^8.0.2
+  flutter_bloc: ^8.0.1
+  equatable: ^2.0.3
+  carousel_slider: ^4.0.0
   flutter:
     sdk: flutter
 

@@ -1,10 +1,23 @@
-import 'package:flutter/material.dart';
-import 'package:mishka_cms_android_flutter/templates/counter/counter.dart';
+//
+//  app.dart
+//  Created on 2022 09 Jan.
+//  Copyright © Mishka Group Flutter application,
+//  Developed by 2021 Hossein HassanNejad.
+//
 
-/// {@template counter_app}
-/// A [MaterialApp] which sets the `home` to [CounterPage].
-/// {@endtemplate}
-class App extends MaterialApp {
-  /// {@macro counter_app}
-  const App({Key? key}) : super(key: key, home: const CounterPage());
+import 'package:flutter/material.dart';
+import 'package:mishka_cms_android_flutter/apps/helper/router_schema.dart';
+import 'package:mishka_cms_android_flutter/routes.dart';
+
+class App extends StatelessWidget {
+  const App({Key? key, required this.routes}) : super(key: key);
+  final Routes routes;
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: routes.getNavigation(nav: SelectNavigation.home),
+    );
+  }
 }
