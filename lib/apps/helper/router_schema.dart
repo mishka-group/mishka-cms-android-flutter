@@ -18,15 +18,10 @@ class RouterSchema {
   UniqueKey id = UniqueKey();
   SelectNavigation routeName;
   Widget nav;
-  StateStreamableSource<Object?>? controller;
+  StateStreamableSource<Object?>? blocProviderValue;
 
-  RouterSchema({required this.routeName, required this.nav, this.controller});
-}
-
-class NavSchema {
-  SelectNavigation routeName;
-  dynamic arguments;
-  NavSchema({required this.routeName, this.arguments});
+  RouterSchema(
+      {required this.routeName, required this.nav, this.blocProviderValue});
 }
 
 var routers = [
@@ -37,7 +32,7 @@ var routers = [
   RouterSchema(
       routeName: SelectNavigation.post,
       nav: const Post(),
-      controller: HomeBloc()),
+      blocProviderValue: HomeBloc()),
 ];
 
 enum SelectNavigation { intro, signIn, signUp, home, post }

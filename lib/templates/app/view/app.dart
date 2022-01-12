@@ -6,6 +6,7 @@
 //
 
 import 'package:flutter/material.dart';
+import 'package:mishka_cms_android_flutter/apps/helper/router_schema.dart';
 import 'package:mishka_cms_android_flutter/routes.dart';
 
 class App extends StatelessWidget {
@@ -16,7 +17,7 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      onGenerateRoute: routes.getNavigation,
+      home: routes.getNavigation(nav: SelectNavigation.home),
     );
   }
 }
