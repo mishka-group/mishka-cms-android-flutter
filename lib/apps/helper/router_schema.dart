@@ -29,10 +29,7 @@ var routers = [
   RouterSchema(routeName: SelectNavigation.signIn, nav: const SignIn()),
   RouterSchema(routeName: SelectNavigation.signUp, nav: const SignUp()),
   RouterSchema(routeName: SelectNavigation.home, nav: const Home()),
-  RouterSchema(
-      routeName: SelectNavigation.post,
-      nav: const Post(),
-      blocProviderValue: HomeBloc()),
+  RouterSchema(routeName: SelectNavigation.post, nav: const Post()),
 ];
 
 enum SelectNavigation { blog, signIn, signUp, home, post }
