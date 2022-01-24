@@ -34,3 +34,142 @@ var routers = [
 ];
 
 enum SelectRoute { blog, signIn, signUp, home, post }
+
+class RouterAnimationSchema {
+  SelectRouteAnimation routeAnimationName;
+  Function(BuildContext context, Animation<double> animation,
+      Animation<double> secondaryAnimation, Widget child) animation;
+
+  RouterAnimationSchema(
+      {required this.routeAnimationName, required this.animation});
+}
+
+List<RouterAnimationSchema> routersAnimation = [
+  RouterAnimationSchema(
+      routeAnimationName: SelectRouteAnimation.fade,
+      animation: (context, animation, secondaryAnimation, child) {
+        return FadeTransition(opacity: animation, child: child);
+      }),
+  RouterAnimationSchema(
+      routeAnimationName: SelectRouteAnimation.rightToLeft,
+      animation: (context, animation, secondaryAnimation, child) {
+        return SlideTransition(
+          transformHitTests: false,
+          position: Tween<Offset>(
+            begin: const Offset(1.0, 0.0),
+            end: Offset.zero,
+          ).animate(animation),
+          child: SlideTransition(
+            position: Tween<Offset>(
+              begin: Offset.zero,
+              end: const Offset(-1.0, 0.0),
+            ).animate(secondaryAnimation),
+            child: child,
+          ),
+        );
+      }),
+  RouterAnimationSchema(
+      routeAnimationName: SelectRouteAnimation.leftToRight,
+      animation: (context, animation, secondaryAnimation, child) {
+        return SlideTransition(
+          transformHitTests: false,
+          position: Tween<Offset>(
+            begin: const Offset(-1.0, 0.0),
+            end: Offset.zero,
+          ).animate(animation),
+          child: SlideTransition(
+            position: Tween<Offset>(
+              begin: Offset.zero,
+              end: const Offset(1.0, 0.0),
+            ).animate(secondaryAnimation),
+            child: child,
+          ),
+        );
+      }),
+  RouterAnimationSchema(
+      routeAnimationName: SelectRouteAnimation.upToDown,
+      animation: (context, animation, secondaryAnimation, child) {
+        return SlideTransition(
+          transformHitTests: false,
+          position: Tween<Offset>(
+            begin: const Offset(0.0, -1.0),
+            end: Offset.zero,
+          ).animate(animation),
+          child: SlideTransition(
+            position: Tween<Offset>(
+              begin: Offset.zero,
+              end: const Offset(0.0, 1.0),
+            ).animate(secondaryAnimation),
+            child: child,
+          ),
+        );
+      }),
+  RouterAnimationSchema(
+      routeAnimationName: SelectRouteAnimation.downToUp,
+      animation: (context, animation, secondaryAnimation, child) {
+        return SlideTransition(
+          transformHitTests: false,
+          position: Tween<Offset>(
+            begin: const Offset(0.0, 1.0),
+            end: Offset.zero,
+          ).animate(animation),
+          child: SlideTransition(
+            position: Tween<Offset>(
+              begin: Offset.zero,
+              end: const Offset(0.0, -1.0),
+            ).animate(secondaryAnimation),
+            child: child,
+          ),
+        );
+      }),
+  RouterAnimationSchema(
+      routeAnimationName: SelectRouteAnimation.rightToLeftWithFade,
+      animation: (context, animation, secondaryAnimation, child) {
+        return SlideTransition(
+          position: Tween<Offset>(
+            begin: const Offset(1.0, 0.0),
+            end: Offset.zero,
+          ).animate(animation),
+          child: FadeTransition(
+            opacity: animation,
+            child: SlideTransition(
+              position: Tween<Offset>(
+                begin: Offset.zero,
+                end: const Offset(-1.0, 0.0),
+              ).animate(secondaryAnimation),
+              child: child,
+            ),
+          ),
+        );
+      }),
+  RouterAnimationSchema(
+      routeAnimationName: SelectRouteAnimation.leftToRightWithFade,
+      animation: (context, animation, secondaryAnimation, child) {
+        return SlideTransition(
+          position: Tween<Offset>(
+            begin: const Offset(-1.0, 0.0),
+            end: Offset.zero,
+          ).animate(animation),
+          child: FadeTransition(
+            opacity: animation,
+            child: SlideTransition(
+              position: Tween<Offset>(
+                begin: Offset.zero,
+                end: const Offset(1.0, 0.0),
+              ).animate(secondaryAnimation),
+              child: child,
+            ),
+          ),
+        );
+      })
+];
+
+enum SelectRouteAnimation {
+  fade,
+  rightToLeft,
+  leftToRight,
+  upToDown,
+  downToUp,
+  rightToLeftWithFade,
+  leftToRightWithFade
+}
