@@ -15,18 +15,21 @@ class Routes {
   Routes(this.context);
 
   Widget initialNavigate({dynamic argument}) {
-    return _findRoute(route: initialRoute).nav;
+    return _findRoute(route: initialRoute).route(argument);
   }
 
   navigate(
       {required SelectRoute route,
+      dynamic argument,
       SelectRouteAnimation animation = SelectRouteAnimation.downToUp,
       Duration duration = const Duration(milliseconds: 400)}) {
     RouterSchema routerSchema = _findRoute(route: route);
 
     Widget router = routerSchema.blocProviderValue == null
-        ? routerSchema.nav
-        : routerSchema.nav.blocProviderValue(routerSchema.blocProviderValue!);
+        ? routerSchema.route(argument)
+        : routerSchema
+            .route(argument)
+            .blocProviderValue(routerSchema.blocProviderValue!);
 
     Navigator.push(
         context,
