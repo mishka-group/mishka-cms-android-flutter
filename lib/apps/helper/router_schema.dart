@@ -16,7 +16,7 @@ import 'package:mishka_cms_android_flutter/templates/sing_up/view/sign_up.dart';
 
 class RouterSchema {
   UniqueKey id = UniqueKey();
-  SelectNavigation routeName;
+  SelectRoute routeName;
   Widget nav;
   StateStreamableSource<Object?>? blocProviderValue;
 
@@ -24,12 +24,14 @@ class RouterSchema {
       {required this.routeName, required this.nav, this.blocProviderValue});
 }
 
+SelectRoute initialRoute = SelectRoute.home;
+
 var routers = [
-  RouterSchema(routeName: SelectNavigation.blog, nav: const Blog()),
-  RouterSchema(routeName: SelectNavigation.signIn, nav: const SignIn()),
-  RouterSchema(routeName: SelectNavigation.signUp, nav: const SignUp()),
-  RouterSchema(routeName: SelectNavigation.home, nav: const Home()),
-  RouterSchema(routeName: SelectNavigation.post, nav: const Post()),
+  RouterSchema(routeName: SelectRoute.blog, nav: const Blog()),
+  RouterSchema(routeName: SelectRoute.signIn, nav: const SignIn()),
+  RouterSchema(routeName: SelectRoute.signUp, nav: const SignUp()),
+  RouterSchema(routeName: SelectRoute.home, nav: const Home()),
+  RouterSchema(routeName: SelectRoute.post, nav: const Post()),
 ];
 
-enum SelectNavigation { blog, signIn, signUp, home, post }
+enum SelectRoute { blog, signIn, signUp, home, post }

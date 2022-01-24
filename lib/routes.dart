@@ -11,6 +11,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'apps/helper/router_schema.dart';
 
 class Routes {
+  final BuildContext context;
+  Routes(this.context);
+
+  Widget initialNavigate({dynamic argument}) {
+    return _findRoute(route: initialRoute).nav(argument);
+  }
+
   Widget getNavigation({required SelectNavigation nav}) {
     String routeName = nav.name;
     RouterSchema routerSchema = routers.firstWhere(
@@ -20,6 +27,15 @@ class Routes {
     return routerSchema.blocProviderValue == null
         ? routerSchema.nav
         : routerSchema.nav.blocProviderValue(routerSchema.blocProviderValue!);
+  }
+
+  RouterSchema _findRoute({required SelectRoute route}) {
+    String routeName = route.name;
+    RouterSchema routerSchema = routers.firstWhere(
+        (RouterSchema routerSchema) =>
+            routerSchema.routeName.name == routeName);
+
+    return routerSchema;
   }
 }
 
