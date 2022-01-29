@@ -8,10 +8,11 @@
 import 'package:flutter/material.dart';
 
 class Post extends StatelessWidget {
-  const Post({Key? key}) : super(key: key);
+  final String arg;
+  const Post({required this.arg, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: Container());
+    return Scaffold(appBar: AppBar(), body: Text(arg));
   }
 }

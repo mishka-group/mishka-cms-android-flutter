@@ -18,11 +18,10 @@ class Routes {
     return _findRoute(route: initialRoute).route(argument);
   }
 
-  navigate(
-      {required SelectRoute route,
-      dynamic argument,
-      SelectRouteAnimation animation = SelectRouteAnimation.downToUp,
-      Duration duration = const Duration(milliseconds: 400)}) {
+  navigate({
+    required SelectRoute route,
+    dynamic argument,
+  }) {
     RouterSchema routerSchema = _findRoute(route: route);
 
     Widget router = routerSchema.blocProviderValue == null
@@ -31,10 +30,7 @@ class Routes {
             .route(argument)
             .blocProviderValue(routerSchema.blocProviderValue!);
 
-    Navigator.push(
-        context,
-        router.pageRouteBuilder(
-            _findRouteAnimation(anim: animation), duration));
+    Navigator.push(context, router.pageRouteBuilder());
   }
 
   RouterSchema _findRoute({required SelectRoute route}) {
@@ -45,30 +41,16 @@ class Routes {
 
     return routerSchema;
   }
-
-  RouterAnimationSchema _findRouteAnimation(
-      {required SelectRouteAnimation anim}) {
-    String routeAnimationName = anim.name;
-    RouterAnimationSchema routerAnimationSchema = routersAnimation.firstWhere(
-        (RouterAnimationSchema routerAnimationSchema) =>
-            routerAnimationSchema.routeAnimationName.name ==
-            routeAnimationName);
-
-    return routerAnimationSchema;
-  }
 }
 
 extension RouteWrapper on Widget {
-  PageRouteBuilder pageRouteBuilder(
-          RouterAnimationSchema animation, Duration duration) =>
-      PageRouteBuilder(
-          pageBuilder: (BuildContext context, Animation<double> _animation,
-                  Animation<double> secondaryAnimation) =>
-              this,
-          transitionsBuilder:
-              (context, _animation, secondaryAnimation, child) => animation
-                  .animation(context, _animation, secondaryAnimation, child),
-          transitionDuration: duration);
+  PageRouteBuilder pageRouteBuilder() => PageRouteBuilder(
+      pageBuilder: (BuildContext context, Animation<double> _animation,
+              Animation<double> secondaryAnimation) =>
+          this,
+      transitionsBuilder: (context, animation, secondaryAnimation, child) =>
+          FadeTransition(opacity: animation, child: child),
+      transitionDuration: const Duration(milliseconds: 300));
 
   BlocProvider<StateStreamableSource<Object?>> blocProviderValue(
           StateStreamableSource<Object?> bloc) =>
