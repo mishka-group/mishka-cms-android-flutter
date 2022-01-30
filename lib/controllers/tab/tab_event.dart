@@ -13,7 +13,6 @@ class UpdateTab extends TabEvent {
 
   const UpdateTab(this.tab);
 
-  @override
   List<Object> get props => [tab];
 
   @override
