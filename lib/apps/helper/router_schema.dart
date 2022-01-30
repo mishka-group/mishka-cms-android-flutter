@@ -25,6 +25,9 @@ class RouterSchema {
 
 SelectRoute initialRoute = SelectRoute.home;
 
+///
+/// Basic Doc for starting.
+///
 var routers = [
   RouterSchema(routeName: SelectRoute.blog, route: (argument) => const Blog()),
   RouterSchema(
