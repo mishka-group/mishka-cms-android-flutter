@@ -10,14 +10,29 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'apps/helper/router_schema.dart';
 
+///
+/// all navigation and route wrappers are done in this class.
+/// we need [context] for navigation because we are still using
+/// navigator version 1
+///
 class Routes {
   final BuildContext context;
   Routes(this.context);
 
+  ///
+  /// introductory navigation in app starting.
+  ///
   Widget initialNavigate({dynamic argument}) {
     return _findRoute(route: initialRoute).route(argument);
   }
 
+  ///
+  /// navigate to another screen,
+  ///
+  /// if you added a new [bloc] or other statemanager libraries
+  /// wrapper in [RouterSchema], you need to check it and wrapped it
+  /// with related [Widget] or another methods using [RouteWrapper]
+  ///
   navigate({
     required SelectRoute route,
     dynamic argument,
@@ -33,6 +48,7 @@ class Routes {
     Navigator.push(context, router.pageRouteBuilder());
   }
 
+  // return the first route found in the [routers] list.
   RouterSchema _findRoute({required SelectRoute route}) {
     String routeName = route.name;
     RouterSchema routerSchema = routers.firstWhere(
@@ -43,6 +59,9 @@ class Routes {
   }
 }
 
+///
+/// contains all routes wrappers, including PageRoutes, Bloc, ...
+///
 extension RouteWrapper on Widget {
   PageRouteBuilder pageRouteBuilder() => PageRouteBuilder(
       pageBuilder: (BuildContext context, Animation<double> _animation,
