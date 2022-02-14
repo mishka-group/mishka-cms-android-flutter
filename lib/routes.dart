@@ -27,11 +27,8 @@ class Routes {
   }
 
   ///
-  /// navigate to another screen,
-  ///
-  /// if you added a new [bloc] or other statemanager libraries
-  /// wrapper in [RouterSchema], you need to check it and wrapped it
-  /// with related [Widget] or another methods using [RouteWrapper]
+  /// navigate to another screen, using [SelectRoute],
+  /// and [argument] is a data you will send it to another screen.
   ///
   navigate({
     required SelectRoute route,
@@ -39,6 +36,12 @@ class Routes {
   }) {
     RouterSchema routerSchema = _findRoute(route: route);
 
+    ///
+    /// if you added a new [bloc] wrapper or other statemanager libraries
+    /// wrapper in [RouterSchema], you need to check it and wrapped it
+    /// with related [Widget] or another methods using [RouteWrapper]
+    /// and set it on [router].
+    ///
     Widget router = routerSchema.blocProviderValue == null
         ? routerSchema.route(argument)
         : routerSchema
@@ -63,6 +66,9 @@ class Routes {
 /// contains all routes wrappers, including PageRoutes, Bloc, ...
 ///
 extension RouteWrapper on Widget {
+  ///
+  /// return a [PageRouteBuilder] to navigate to new screen and default [FadeTransition] animation
+  ///
   PageRouteBuilder pageRouteBuilder() => PageRouteBuilder(
       pageBuilder: (BuildContext context, Animation<double> _animation,
               Animation<double> secondaryAnimation) =>
@@ -71,6 +77,9 @@ extension RouteWrapper on Widget {
           FadeTransition(opacity: animation, child: child),
       transitionDuration: const Duration(milliseconds: 300));
 
+  ///
+  /// return a [BlocProvider] with a value of a [bloc] class.
+  ///
   BlocProvider<StateStreamableSource<Object?>> blocProviderValue(
           StateStreamableSource<Object?> bloc) =>
       BlocProvider.value(
