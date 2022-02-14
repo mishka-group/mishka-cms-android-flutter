@@ -4,10 +4,10 @@ import 'dart:developer';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/widgets.dart';
 
-/// {@template counter_observer}
-/// [BlocObserver] for the counter application which
-/// observes all state changes.
-/// {@endtemplate}
+///
+/// [BlocObserver] for the mishka application which
+/// observes all state changes about [Bloc] library.
+///
 class AppBlocObserver extends BlocObserver {
   @override
   void onEvent(Bloc bloc, Object? event) {
