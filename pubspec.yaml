@@ -25,6 +25,6 @@ dev_dependencies:
     sdk: flutter
 
 flutter:
-  assets: 
-      - assets/images/
+  # assets: 
+  #     - assets/images/
   uses-material-design: true
