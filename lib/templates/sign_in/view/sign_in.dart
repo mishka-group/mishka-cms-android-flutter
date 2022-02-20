@@ -11,6 +11,11 @@ class SignIn extends StatelessWidget {
   const SignIn({Key? key}) : super(key: key);
 
   @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is SignIn && runtimeType == other.runtimeType;
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(body: Container());
   }

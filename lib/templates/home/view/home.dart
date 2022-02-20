@@ -13,6 +13,11 @@ class Home extends StatelessWidget {
   const Home({Key? key}) : super(key: key);
 
   @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Home && runtimeType == other.runtimeType;
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(),

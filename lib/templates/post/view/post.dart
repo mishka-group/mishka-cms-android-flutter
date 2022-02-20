@@ -8,11 +8,16 @@
 import 'package:flutter/material.dart';
 
 class Post extends StatelessWidget {
-  final String arg;
+  final String? arg;
   const Post({required this.arg, Key? key}) : super(key: key);
 
   @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Post && runtimeType == other.runtimeType && arg == other.arg;
+
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(appBar: AppBar(), body: Text(arg));
+    return Scaffold(appBar: AppBar(), body: Text(arg!));
   }
 }
