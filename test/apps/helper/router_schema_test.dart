@@ -17,9 +17,35 @@ void main() {
     test(
         'the number of SelectNavigation Enum should be equal to the routers list',
         () {
-      int selectNavigationItemsLength = SelectNavigation.values.length;
+      int selectNavigationItemsLength = SelectRoute.values.length;
       int routersLength = routers.length;
       expect(routersLength, selectNavigationItemsLength);
+    });
+
+    test('routeName should not be duplicates', () {
+      bool isRoutesNameUniq = false;
+      List<SelectRoute> routesName = [];
+      for (var routerSchema in routers) {
+        if (routesName.contains(routerSchema.routeName)) {
+          isRoutesNameUniq = true;
+        } else {
+          routesName.add(routerSchema.routeName);
+        }
+      }
+      expect(isRoutesNameUniq, false);
+    });
+
+    test('route should not be duplicates', () {
+      bool isRoutesUniq = false;
+      List<dynamic> routes = [];
+      for (var routerSchema in routers) {
+        if (routes.contains(routerSchema.route(null))) {
+          isRoutesUniq = true;
+        } else {
+          routes.add(routerSchema.route(null));
+        }
+      }
+      expect(isRoutesUniq, false);
     });
   });
 }
